@@ -1,4 +1,5 @@
 import { Connection } from 'tedious';
+import { Sequelize } from 'sequelize';
 
 export const serverAttempt = (): Connection => {
     const config: any = {
@@ -27,3 +28,8 @@ export const serverAttempt = (): Connection => {
 
     return connection;
 };
+
+export const sequelize = new Sequelize('bookish', 'Borsec', 'Borsec', {
+    host: '127.0.0.1',
+    dialect: 'mssql',
+});

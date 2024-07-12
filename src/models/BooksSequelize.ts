@@ -1,15 +1,11 @@
 import { Sequelize, DataTypes } from 'sequelize';
-
-export const sequelize = new Sequelize('bookish', 'Borsec', 'Borsec', {
-    host: '127.0.0.1',
-    dialect: 'mssql',
-});
+import { sequelize } from '../ConfigServer';
 
 export const BooksSeq = sequelize.define('Books', {
     id: {
-        type: DataTypes.INTEGER,
-        allowNull: false,
+        type: DataTypes.INTEGER.UNSIGNED,
         primaryKey: true,
+        autoIncrement: true,
     },
     title: {
         type: DataTypes.STRING,
