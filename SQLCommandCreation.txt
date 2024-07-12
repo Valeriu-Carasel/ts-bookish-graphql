@@ -1,0 +1,24 @@
+CREATE TABLE Users(
+	id int NOT NULL IDENTITY(1,1),
+	username varchar(20) UNIQUE,
+	passUser varchar(20),
+	token varchar(20),
+	PRIMARY KEY (id)
+);
+
+CREATE TABLE Books(
+	id int NOT NULL IDENTITY(1,1),
+	title varchar(20) NOT NULL,
+	author varchar(20) NOT NULL,
+	ISBN varchar(20) NOT NULL,
+	copies int NOT NULL,
+	PRIMARY KEY (id)
+);
+
+CREATE TABLE borrowed(
+	id int NOT NULL IDENTITY(1,1),
+	idUser int NOT NULL FOREIGN KEY REFERENCES Users(id),
+	idBook int NOT NULL FOREIGN KEY REFERENCES Books(id),
+	dueDate DATE NOT NULL,
+	PRIMARY KEY (id)
+);
