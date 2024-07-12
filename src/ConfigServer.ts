@@ -1,7 +1,4 @@
 import { Connection } from 'tedious';
-import { Request } from 'tedious';
-import { Books } from './models/Books';
-import { getAllBooks } from './services/bookService';
 
 export const serverAttempt = (): Connection => {
     const config: any = {
