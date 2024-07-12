@@ -1,9 +1,12 @@
 import { addBook, getAllBooksBySequelize } from '../services/bookService';
 import { getAllBorrowedBySequelize } from '../services/borrowService';
+import { getCheckedOutBooks, getUserByName } from '../services/userService';
 
 // TODO: implement functionality
 const resolvers = {
     status: () => 200,
+
+    //book operations
     getBooks: async () => {
         try {
             return await getAllBooksBySequelize();
@@ -11,16 +14,35 @@ const resolvers = {
             throw new Error(`Failed to fetch books: ${error.message}`);
         }
     },
-    getBorrowed: async () => {
+    addBook: async ({ title, author, ISBN, copies }) => {
         try {
-            return await getAllBorrowedBySequelize();
+            addBook(title, author, ISBN, copies);
         } catch (error) {
             throw new Error(`Failed to fetch borrows: ${error.message}`);
         }
     },
-    addBook: async () => {
+
+    //users operations
+    getUserByName: async ({ username }) => {
         try {
-            addBook('Jujutsu Kaisen 0', 'Gege Akutami', '9781974720149', 20);
+            return await getUserByName(username);
+        } catch (error) {
+            throw new Error(`Failed to fetch borrows: ${error.message}`);
+        }
+    },
+
+    getCheckedOutBooks: async ({ username }) => {
+        try {
+            return await getCheckedOutBooks(username);
+        } catch (error) {
+            throw new Error(`Failed to fetch borrows: ${error.message}`);
+        }
+    },
+
+    //borrowed operations
+    getBorrowed: async () => {
+        try {
+            return await getAllBorrowedBySequelize();
         } catch (error) {
             throw new Error(`Failed to fetch borrows: ${error.message}`);
         }

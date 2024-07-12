@@ -10,6 +10,13 @@ const schema = buildSchema(`
         copies: Int!
     }
     
+    type User { 
+        id: ID!
+        username: String!
+        passUser: String!
+        token: String!
+    }
+    
     type Borrowed {
         id: ID!
         idUser: Int!
@@ -21,6 +28,8 @@ const schema = buildSchema(`
         status: Int
         getBooks: [Book!]!
         getBorrowed: [Borrowed!]!
+        getUserByName(username: String!): User
+        getCheckedOutBooks(username: String!): [Book!]!
     }
     type Mutation {
         addBook(title: String!, author: String!, ISBN: String!, copies: Int!): Book
