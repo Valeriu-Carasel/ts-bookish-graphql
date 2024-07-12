@@ -3,11 +3,11 @@ import schema from './schemas/schema';
 import resolvers from './resolvers/resolvers';
 import { graphqlHTTP } from 'express-graphql';
 import { serverAttempt } from './ConfigServer';
-import {Connection} from "tedious";
+import { Connection } from 'tedious';
 
 const server = express();
 
-const PORT = 3000;
+const PORT = 3022;
 
 server.use(
     '/graphql',

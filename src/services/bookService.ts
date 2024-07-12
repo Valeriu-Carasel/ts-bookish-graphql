@@ -4,8 +4,9 @@ import { Connection, Request } from 'tedious';
 import rowParser from 'tedious/lib/token/row-token-parser';
 import { rejects } from 'node:assert';
 import { connection } from '../app';
+import { BooksSeq } from '../models/BooksSequelize';
 
-export const getAllBooks = async (): Promise<Books[]> => {
+export const getAllBooksByTedious = async (): Promise<Books[]> => {
     console.log(connection.state);
 
     const copyBooks = [];
@@ -33,4 +34,24 @@ export const getAllBooks = async (): Promise<Books[]> => {
 
         connection.execSql(request);
     });
+};
+
+export const getAllBooksBySequelize = async () => {
+    const allBooks = await BooksSeq.findAll();
+    return allBooks;
+};
+
+export const addBook = async (
+    title: string,
+    author: string,
+    ISBN: string,
+    copies: number,
+) => {
+    const book = await BooksSeq.create({
+        title: title,
+        author: author,
+        ISBN: ISBN,
+        copies: copies,
+    });
+    return book;
 };
