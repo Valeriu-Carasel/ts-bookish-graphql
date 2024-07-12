@@ -25,5 +25,3 @@ export const BooksSeq = sequelize.define('Books', {
         allowNull: false,
     },
 });
-
-//BooksSeq.hasMany(BorrowedSeq, {foreignKey: ''})

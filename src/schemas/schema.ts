@@ -23,13 +23,17 @@ const schema = buildSchema(`
         idBook: Int!
         dueDate: String!
     }
+    type Returned{
+        book: Book
+        dueDate: String!
+    }
     
     type Query {
         status: Int
         getBooks: [Book!]!
         getBorrowed: [Borrowed!]!
         getUserByName(username: String!): User
-        getCheckedOutBooks(username: String!): [Book!]!
+        getCheckedOutBooks(username: String!): [Returned!]!
     }
     type Mutation {
         addBook(title: String!, author: String!, ISBN: String!, copies: Int!): Book
