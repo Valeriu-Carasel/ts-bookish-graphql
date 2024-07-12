@@ -7,7 +7,19 @@ export const getAllBorrowedBySequelize = async () => {
 };
 
 export const getBorrowedBooks = async (idUser) => {
-    return await BorrowedSeq.findAll({
+    const books = await BorrowedSeq.findAll({
+        include: [
+            {
+                model: BooksSeq,
+                required: true,
+            },
+        ],
         where: { idUser: idUser },
     });
+    const booooook = [];
+    books.forEach((x) => {
+        booooook.push(x.get('Book'));
+    });
+    // console.log(booooook);
+    return booooook;
 };

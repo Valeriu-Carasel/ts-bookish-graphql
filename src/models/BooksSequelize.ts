@@ -1,5 +1,6 @@
 import { Sequelize, DataTypes } from 'sequelize';
 import { sequelize } from '../ConfigServer';
+import {BorrowedSeq} from "./BorrowedSequelize";
 
 export const BooksSeq = sequelize.define('Books', {
     id: {
@@ -24,3 +25,5 @@ export const BooksSeq = sequelize.define('Books', {
         allowNull: false,
     },
 });
+
+//BooksSeq.hasMany(BorrowedSeq, {foreignKey: ''})

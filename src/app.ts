@@ -7,7 +7,7 @@ import { Connection } from 'tedious';
 
 const server = express();
 
-const PORT = 3046;
+const PORT = 3066;
 
 server.use(
     '/graphql',

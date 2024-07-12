@@ -1,5 +1,7 @@
 import { DataTypes } from 'sequelize';
 import { sequelize } from '../ConfigServer';
+import { UsersSeq } from './UsersSequelize';
+import { BooksSeq } from './BooksSequelize';
 
 export const BorrowedSeq = sequelize.define(
     'Borrowed',
@@ -13,7 +15,7 @@ export const BorrowedSeq = sequelize.define(
             type: DataTypes.INTEGER,
             allowNull: false,
             references: {
-                model: 'Users',
+                model: UsersSeq,
                 key: 'id',
             },
         },
@@ -21,7 +23,7 @@ export const BorrowedSeq = sequelize.define(
             type: DataTypes.INTEGER,
             allowNull: false,
             references: {
-                model: 'Books',
+                model: BooksSeq,
                 key: 'id',
             },
         },
@@ -32,3 +34,7 @@ export const BorrowedSeq = sequelize.define(
     },
     { freezeTableName: true },
 );
+
+BorrowedSeq.belongsTo(BooksSeq, {
+    foreignKey: 'idBook',
+});

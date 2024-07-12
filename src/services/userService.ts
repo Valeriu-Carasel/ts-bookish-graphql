@@ -11,18 +11,19 @@ export const getCheckedOutBooks = async (username) => {
     const userId = user.get('id');
 
     const borrowed = await getBorrowedBooks(userId);
+    return borrowed;
 
-    console.log(borrowed);
-
-    const books = [];
-    for (const post of borrowed) {
-        const book = await BooksSeq.findOne({
-            where: { id: post.get('idBook') },
-        });
-        books.push(book);
-    }
-    for (const book in books) console.log(book);
-    return books;
+    // console.log(borrowed);
+    //
+    // const books = [];
+    // for (const post of borrowed) {
+    //     const book = await BooksSeq.findOne({
+    //         where: { id: post.get('idBook') },
+    //     });
+    //     books.push(book);
+    // }
+    // for (const book in books) console.log(book);
+    // return books;
 
     //const checkedOut = // functie in borrowed dupa userID
     //afiseaza functie din books dupa id book
